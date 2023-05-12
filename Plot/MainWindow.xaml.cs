@@ -276,7 +276,7 @@ namespace Plot
             sa.AddPolygon(10, 500);
 
             int initialTemperature = Convert.ToInt32(initialTemp.Text.ToString());
-            float crate = Convert.ToSingle(coolingRate.ToString());
+            float crate = Convert.ToSingle(coolingRate.Text.ToString());
             Task t = new Task(() =>
             {
                 sa.SimulatedAnnealing(sa.polygon, initialTemperature, crate);
@@ -343,7 +343,7 @@ namespace Plot
                 }
 
             }
-            textLabel.Content = "Distance:"+SmallestBWSimulatedA.distanceToText.ToString()+"\tC:"+SmallestBWSimulatedA.tempToText;
+            textLabel.Content = "Distance:"+SmallestBWSimulatedA.distanceToText.ToString()+"\nTemperature:"+SmallestBWSimulatedA.tempToText;
         }
 
 
