@@ -37,13 +37,13 @@ namespace HaladoAlg
             //    Console.Clear();
             //}
 
-            SmallestBWSimulatedA test1 = new SmallestBWSimulatedA();
-            test1.AddPolygon(0, 0);
-            test1.AddPolygon(10, 0);
-            test1.AddConstant(5, 5);
-            var tmp = test1.outerDistanceToBoundary(test1.polygon);
-            ;
-            Console.ReadLine();
+            //SmallestBWSimulatedA test1 = new SmallestBWSimulatedA();
+            //test1.AddPolygon(0, 0);
+            //test1.AddPolygon(10, 0);
+            //test1.AddConstant(5, 5);
+            //var tmp = test1.outerDistanceToBoundary(test1.polygon);
+            //;
+            //Console.ReadLine();
 
 
             ;

@@ -265,6 +265,7 @@ namespace Plot
             timer.Start();
 
             SmallestBWSimulatedA sa = new SmallestBWSimulatedA();
+            //----- ITT LEHET HOZZÁADNI POLIGONOKAT---------
             sa.AddConstant(200, 200);
             sa.AddConstant(500, 250);
             sa.AddConstant(800, 400);
