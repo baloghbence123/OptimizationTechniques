@@ -8,19 +8,63 @@
         Title="MainWindow" WindowStartupLocation="CenterScreen" Width="500" Height="500" WindowState="Maximized">
     <Grid x:Name="grid">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*" />
             <ColumnDefinition Width="2*" />
-            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="2*" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <Button x:Name="bOne" Grid.Column="1" Grid.Row="0" Margin="60" Click="GeneticV">Genetic Algo Visualize</Button>
-        <Button x:Name="bTwo" Grid.Column="1" Grid.Row="1" Margin="60" Click="NSGAIIV">NSGA2 visualize</Button>
-        <Button x:Name="bThree" Grid.Column="1" Grid.Row="2" Margin="60" Click="SimulatedA" >Simulated annealing</Button>
+        <Button x:Name="bOne" Grid.Column="1" Grid.Row="0" Margin="60 50 50 60"  Click="GeneticV">Genetic Algo Visualize</Button>
+        <Button x:Name="bTwo" Grid.Column="1" Grid.Row="1" Margin="60 50 50 60" Click="NSGAIIV">NSGA2 visualize</Button>
+        <Button x:Name="bThree" Grid.Column="1" Grid.Row="2" Margin="60 50 50 60" Click="SimulatedA" >Simulated annealing</Button>
         <Canvas x:Name="can"/>
         <Label x:Name="textLabel" ></Label>
+        
+        <Grid Grid.Row="0" Grid.Column="0" x:Name="g1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Label x:Name="townN" Content="Town number:" Grid.Column="0" Grid.Row="0" Margin="10" HorizontalAlignment="Center" VerticalAlignment="Center"></Label>
+            <TextBox x:Name="townNumber" Text="20" Grid.Column="1" Grid.Row="0" Margin="10" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBox>
+            <Label x:Name="popS" Content="Population size:" Grid.Column="0" Grid.Row="1" Margin="10" HorizontalAlignment="Center" VerticalAlignment="Center"></Label>
+            <TextBox x:Name="popSize" Text="200" Grid.Column="1" Grid.Row="1" Margin="10" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBox>
+        </Grid>
+
+        <Grid Grid.Row="1" Grid.Column="0" x:Name="g2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Label x:Name="maxG" Content="Max generation/cycle:" Grid.Column="0" Grid.Row="0"  HorizontalAlignment="Center" VerticalAlignment="Center"></Label>
+            <TextBox x:Name="maxGen" Text="5" Grid.Column="1" Grid.Row="0" Margin="10" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBox>
+            <Label x:Name="personP" Content="Population size:" Grid.Column="0" Grid.Row="1" Margin="10" HorizontalAlignment="Center" VerticalAlignment="Center"></Label>
+            <TextBox x:Name="personPop" Text="500" Grid.Column="1" Grid.Row="1" Margin="10" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBox>
+        </Grid>
+
+        <Grid Grid.Row="2" Grid.Column="0" x:Name="g3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Label x:Name="coolingR" Content="Cooling rate:" Grid.Column="0" Grid.Row="0" Margin="10" HorizontalAlignment="Center" VerticalAlignment="Center"></Label>
+            <TextBox x:Name="coolingRate" Text="16" Grid.Column="1" Grid.Row="0" Margin="10" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBox>
+            <Label x:Name="initialT" Content="Initial temp:" Grid.Column="0" Grid.Row="1" Margin="10" HorizontalAlignment="Center" VerticalAlignment="Center"></Label>
+            <TextBox x:Name="initialTemp" Text="15000" Grid.Column="1" Grid.Row="1" Margin="10" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBox>
+        </Grid>
     </Grid>
 </Window>

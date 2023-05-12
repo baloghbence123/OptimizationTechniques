@@ -73,16 +73,28 @@ namespace Plot
             }
 
         }
+        public void RemoveChilds()
+        {
+            grid.Children.Remove(g1);
+            grid.Children.Remove(g2);
+            grid.Children.Remove(g3);
+            grid.Children.Remove(bOne);
+            grid.Children.Remove(bTwo);
+            grid.Children.Remove(bThree);
+
+        }
         public void ResetCan()
         {
             can.Children.Clear();
         }
-        public void StartGenetic()
+        public void StartGenetic(int townNumb,int populationNumber)
         {
             TravellingSalesmanProblem t1 = new TravellingSalesmanProblem((int)ActualWidth, (int)ActualHeight);
-            t1.CreateInitialTowns(500);
+
+            t1.CreateInitialTowns(townNumb);
             towns = t1.towns.ToArray();
-            GeneticAlgorithm geneticAlgorithm = new GeneticAlgorithm(500, 0.5f, t1.towns);
+
+            GeneticAlgorithm geneticAlgorithm = new GeneticAlgorithm(populationNumber, 0.5f, t1.towns);
             while (true)
             {
                 geneticAlgorithm.GetAllFitness();
@@ -97,14 +109,15 @@ namespace Plot
         {
             can.Width = this.ActualWidth;
             can.Height = this.ActualHeight;
-            grid.Children.Remove(bOne);
-            grid.Children.Remove(bTwo);
-            grid.Children.Remove(bThree);
+
+            int townNumb = Convert.ToInt32(townNumber.Text.ToString());
+            int populationNumber = Convert.ToInt32(popSize.Text.ToString());
 
             Task task = new Task(() =>
             {
-                StartGenetic();
+                StartGenetic(townNumb, populationNumber);
             }, TaskCreationOptions.LongRunning);
+            RemoveChilds();
             task.Start();
             DispatcherTimer timer = new DispatcherTimer();
             timer.Interval = TimeSpan.FromMilliseconds(50);
@@ -114,22 +127,19 @@ namespace Plot
             ;
         }
 
-        private void StartNsgaII()
+        private void StartNsgaII(int generation)
         {
             frontList = new List<Person>();
-            ;
+            
             List<Person> p = new List<Person>();
             p.AddRange(Enumerable.Range(0, Person.PopulationSize).Select(t => new Person()).ToList());
-            ;
             var tmp = NSGAII.NSGAIIMethod(p, 2);
+            
             ;
             while (true)
             {
-                tmp = NSGAII.NSGAIIMethod(tmp, 30);
+                tmp = NSGAII.NSGAIIMethod(tmp, generation);
                 frontList = tmp.ToList();
-                ;
-
-                ;
                 Thread.Sleep(100);
             }
 
@@ -140,22 +150,21 @@ namespace Plot
 
         private void NSGAIIV(object sender, RoutedEventArgs e)
         {
-            grid.Children.Remove(bOne);
-            grid.Children.Remove(bTwo);
-            grid.Children.Remove(bThree);
+
             can.Width = this.ActualWidth;
             can.Height = this.ActualHeight;
             Thread.Sleep(100);
 
-
-
+            Person.PopulationSize = Convert.ToInt32(personPop.Text.ToString());
+            int maxgeneration = Convert.ToInt32(maxGen.Text.ToString());
             Task task = new Task(() =>
             {
-                StartNsgaII();
+                StartNsgaII(maxgeneration);
 
 
             }, TaskCreationOptions.LongRunning);
             task.Start();
+            RemoveChilds();
             ;
             DispatcherTimer timer = new DispatcherTimer();
             timer.Interval = TimeSpan.FromMilliseconds(50);
@@ -245,9 +254,7 @@ namespace Plot
 
         private void SimulatedA(object sender, RoutedEventArgs e)
         {
-            grid.Children.Remove(bOne);
-            grid.Children.Remove(bTwo);
-            grid.Children.Remove(bThree);
+
             can.Width = this.ActualWidth;
             can.Height = this.ActualHeight;
             Thread.Sleep(100);
@@ -267,11 +274,14 @@ namespace Plot
             sa.AddPolygon(1000, 500);
             sa.AddPolygon(10, 500);
 
+            int initialTemperature = Convert.ToInt32(initialTemp.Text.ToString());
+            float crate = Convert.ToSingle(coolingRate.ToString());
             Task t = new Task(() =>
             {
-                sa.SimulatedAnnealing(sa.polygon, 15000,16f);
+                sa.SimulatedAnnealing(sa.polygon, initialTemperature, crate);
             });
             t.Start();
+            RemoveChilds();
 
 
 
@@ -334,5 +344,8 @@ namespace Plot
             }
             textLabel.Content = "Distance:"+SmallestBWSimulatedA.distanceToText.ToString()+"\tC:"+SmallestBWSimulatedA.tempToText;
         }
+
+
+
     }
 }
